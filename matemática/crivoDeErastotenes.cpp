@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int max = 100010;
-int eh_primo[10010];
+int eh_primo[10010000];
 vector<int> arr;
 void crivo(int n){
 	for (int i = 2; i <= n; i++){
