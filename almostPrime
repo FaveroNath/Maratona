@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const ll N = 1e6;
+ll eh_primo[N+5];
+vector<ll> almost;
+void crivo(ll n){
+    memset(eh_primo, -1, sizeof(eh_primo));
+    eh_primo[0] = eh_primo[1] = 0;
+    
+    for(ll i = 2; i <= n; i++){
+        if(eh_primo[i] == -1){
+            eh_primo[i] = 1;
+            ll aux = i*i;
+            while(aux <= 10000000000000){
+                almost.push_back(aux);
+                aux *= i;
+            }
+            for(ll j = 2; i*j <= n; j++){
+                eh_primo[i*j] = 0;
+            }
+        }
+    }
+    sort(almost.begin(), almost.end());
+}
+ll busca_bin1(ll a){
+    ll ini = 0, fim  = almost.size()-1, meio, ans;
+    while(ini <= fim){
+      meio = (ini+fim)/2;
+      //cout << meio << endl;
+      if(almost[meio] >= a) {
+        ans = meio;
+        fim = meio - 1;
+      }
+      else if(almost[meio] < a) ini = meio + 1;
+    }
+    return  ans; 
+}
+ll busca_bin2(ll b){
+  ll ini = 0, fim  = almost.size()-1, meio, ans;
+    while(ini <= fim){
+      meio = (ini+fim)/2;
+      if(almost[meio] <= b) {
+        ans = meio;
+        ini = meio + 1;
+      }
+      else if(almost[meio] > b) fim = meio - 1;
+    }
+    return  ans; 
+} 
+int main(){
+    ll n, a, b;
+    cin >> n;
+    crivo(1000000);
+    while(n--){
+        cin >> a >> b;
+        //busca_bin1(a);
+        //cout << almost.size() << endl;
+        //cout << busca_bin1(a) <<  " " << busca_bin2(b);
+       ll dif = busca_bin2(b) -  busca_bin1(a);
+        cout << dif+1;  
+        cout << endl;
+    }
+    return 0;
+} 
