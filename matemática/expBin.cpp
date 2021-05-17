@@ -1,4 +1,4 @@
-// Exponenciação Binária  - O(log n)
+// Exponenciação Binária  - O(long n)
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -10,12 +10,13 @@ ll expBin(ll i, ll n){
 
 	while(n > 0){
 		//Verifica se n é impar
-		if(n & 1) ans = ans * i%N;
+		if(n & 1)  ans = (ans * i)%N;
 
-		i = i * i%N;
+		i = (i * i)%N;
 		// mesma coisa que dividir por 2
 		n >>= 1;
 	}
+	return ans;
 }
 
 int main(){
