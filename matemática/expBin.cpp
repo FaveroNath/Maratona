@@ -1,4 +1,4 @@
-// Exponenciação Binária  - O(long n)
+// Exponenciação Binária  - O(log n)
 
 #include<bits/stdc++.h>
 using namespace std;
